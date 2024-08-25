@@ -1,8 +1,12 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { blogPosts } from "../../blogPost";
 import styled from "styled-components";
+import { useContext } from "react";
+import { ThemeContext } from "../../contexts/ThemeContext";
 
 const Container = styled.div`
+  background-color: ${(props) => (props.theme === "dark" ? "#333" : "#fff")};
+  color: ${(props) => (props.theme === "dark" ? "white" : "#333")};
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
@@ -32,11 +36,12 @@ const BlogPreview = () => {
   const { slug } = useParams();
   const post = blogPosts.find((p) => p.slug === slug);
   const navigate = useNavigate();
+  const { theme } = useContext(ThemeContext);
 
   if (!post) return <div>Post not found</div>;
 
   return (
-    <Container>
+    <Container theme={theme}>
       <Image src={post.picture} alt={post.title} />
       <Content>
         <Title>{post.title}</Title>

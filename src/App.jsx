@@ -11,27 +11,30 @@ import Blog from "./pages/blogs/Blog";
 import BlogCard from "./pages/blogs/BlogCard";
 import BlogPreview from "./pages/blogs/BlogPreview";
 import Service from "./pages/services/Service";
+import ThemeContextProvider from "./contexts/ThemeContext";
 
 function App() {
   return (
     <>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/About" element={<About />} />
-        <Route path="/services" element={<Service />}>
-          <Route path="CarRepair" element={<CarRepair />} />
-          <Route path="CarHire" element={<CarHire />} />
-        </Route>
-        <Route path="/student" element={<Students />}>
-          <Route path=":id" element={<StudentsPreview />} />
-        </Route>
-        <Route path="/blog" element={<Blog />}>
-          <Route path="blogcard" element={<BlogCard />} />
-        </Route>
-        <Route path="/blog/:slug" element={<BlogPreview />} />
-        <Route path="*" element={<ErrorPages />} />
-      </Routes>
+      <ThemeContextProvider>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/services" element={<Service />}>
+            <Route path="CarRepair" element={<CarRepair />} />
+            <Route path="CarHire" element={<CarHire />} />
+          </Route>
+          <Route path="/student" element={<Students />}>
+            <Route path=":id" element={<StudentsPreview />} />
+          </Route>
+          <Route path="/blog" element={<Blog />}>
+            <Route path="blogcard" element={<BlogCard />} />
+          </Route>
+          <Route path="/blog/:slug" element={<BlogPreview />} />
+          <Route path="*" element={<ErrorPages />} />
+        </Routes>
+      </ThemeContextProvider>
     </>
   );
 }

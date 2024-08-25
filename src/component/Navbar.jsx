@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import { Link, NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { ThemeContext } from "../contexts/ThemeContext";
 //NavLink allows styling
 //but Link doesn't allow styling
 
 const Wrapper = styled.nav`
-  background-color: #333;
-  color: white;
+    background-color: ${(props) => (props.theme === "dark" ? "#333" : "#fff")};
+  color: ${(props) => (props.theme === "dark" ? "white" : "#333")};
   padding: 1rem 0;
 
   ul {
@@ -16,7 +18,7 @@ const Wrapper = styled.nav`
   }
 
   a {
-    color: white;
+     color: ${(props) => (props.theme === "dark" ? "white" : "#333")};
     text-decoration: none;
 
     &:hover {
@@ -51,9 +53,21 @@ const Wrapper = styled.nav`
   }
 `;
 
+const ToggleButton = styled.div`
+  height: 30px;
+  width: 50px;
+  background: ${(props) => (props.theme === "dark" ? "#333" : "#fff")};
+  color: ${(props) => (props.theme === "dark" ? "white" : "#333")};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+`;
 const Navbar = () => {
+  const { theme, toggleTheme } = useContext(ThemeContext);
+
   return (
-    <Wrapper>
+    <Wrapper theme={theme}>
       <ul>
         <li>
           <NavLink activeClassName="active" to="/">
@@ -95,6 +109,9 @@ const Navbar = () => {
           </ul>
         </li>
       </ul>
+      <ToggleButton theme={theme} onClick={toggleTheme}>
+        Toggle
+      </ToggleButton>
     </Wrapper>
   );
 };

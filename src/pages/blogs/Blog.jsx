@@ -16,7 +16,7 @@ const Card = styled.div`
   &:hover {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   }
-`;
+;`
 
 // Styling for the blog card image
 const Image = styled.img`
@@ -24,18 +24,18 @@ const Image = styled.img`
   height: 200px;
   object-fit: cover;
   border-radius: 10px 10px 0 0;
-`;
+;`
 
 // Styling for the content within the card
 const Content = styled.div`
   padding: 20px;
-`;
+;`
 
 // Styling for the title
 const Title = styled.h2`
   font-weight: bold;
   margin-bottom: 10px;
-`;
+;`
 
 // Styling for the read more link
 const ReadMore = styled.button`
@@ -46,7 +46,7 @@ const ReadMore = styled.button`
   &:hover {
     color: #23527c;
   }
-`;
+;`
 
 const Blog = ({ title, slug, picture, content }) => {
   const navigate = useNavigate();
