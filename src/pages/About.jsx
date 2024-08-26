@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import styled from "styled-components";
-import { ThemeContext } from "../contexts/ThemeContext";
+import { ThemeContext } from "../context/ThemeContext";
 
 const Wrapper = styled.div`
   background-color: ${(props) => (props.theme === "dark" ? "#333" : "#fff")};

@@ -1,8 +1,8 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { blogPosts } from "../../blogPost";
+import { blogPosts } from "../../utils/blogPost";
 import styled from "styled-components";
 import { useContext } from "react";
-import { ThemeContext } from "../../contexts/ThemeContext";
+import { ThemeContext } from "../../context/ThemeContext";
 
 const Container = styled.div`
   background-color: ${(props) => (props.theme === "dark" ? "#333" : "#fff")};

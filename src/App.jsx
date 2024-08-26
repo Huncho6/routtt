@@ -11,7 +11,8 @@ import Blog from "./pages/blogs/Blog";
 import BlogCard from "./pages/blogs/BlogCard";
 import BlogPreview from "./pages/blogs/BlogPreview";
 import Service from "./pages/services/Service";
-import ThemeContextProvider from "./contexts/ThemeContext";
+import ThemeContextProvider from "./context/ThemeContext";
+import Mart from "./pages/mart/Mart";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
             <Route path="blogcard" element={<BlogCard />} />
           </Route>
           <Route path="/blog/:slug" element={<BlogPreview />} />
+          <Route path="/mart" element={<Mart />} />
           <Route path="*" element={<ErrorPages />} />
         </Routes>
       </ThemeContextProvider>

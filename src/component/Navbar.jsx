@@ -1,14 +1,19 @@
 import styled from "styled-components";
 import { Link, NavLink } from "react-router-dom";
 import { useContext } from "react";
-import { ThemeContext } from "../contexts/ThemeContext";
+import { ThemeContext } from "../context/ThemeContext";
+import { TiShoppingCart } from "react-icons/ti";
+import { MartContext } from "../context/MartContext";
 //NavLink allows styling
 //but Link doesn't allow styling
 
 const Wrapper = styled.nav`
-    background-color: ${(props) => (props.theme === "dark" ? "#333" : "#fff")};
+  background-color: ${(props) => (props.theme === "dark" ? "#333" : "#fff")};
   color: ${(props) => (props.theme === "dark" ? "white" : "#333")};
-  padding: 1rem 0;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   ul {
     display: flex;
@@ -18,7 +23,7 @@ const Wrapper = styled.nav`
   }
 
   a {
-     color: ${(props) => (props.theme === "dark" ? "white" : "#333")};
+    color: ${(props) => (props.theme === "dark" ? "white" : "#333")};
     text-decoration: none;
 
     &:hover {
@@ -51,6 +56,23 @@ const Wrapper = styled.nav`
       display: block;
     }
   }
+
+  .cartContainer {
+    position: relative;
+    width: 20px;
+    height: 20px;
+
+    p {
+      position: absolute;
+      top: -10px;
+      right: 5px;
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
 `;
 
 const ToggleButton = styled.div`
@@ -65,9 +87,11 @@ const ToggleButton = styled.div`
 `;
 const Navbar = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
+  const { cart } = useContext(MartContext);
 
   return (
     <Wrapper theme={theme}>
+      <h1>IB</h1>
       <ul>
         <li>
           <NavLink activeClassName="active" to="/">
@@ -108,10 +132,19 @@ const Navbar = () => {
             </li>
           </ul>
         </li>
+        <li>
+          <NavLink activeClassName="active" to="/mart">
+            Mart
+          </NavLink>
+        </li>
       </ul>
       <ToggleButton theme={theme} onClick={toggleTheme}>
         Toggle
       </ToggleButton>
+      <div className="cartContainer">
+      <p>{cart?.length || 0}</p>
+        <TiShoppingCart />
+      </div>
     </Wrapper>
   );
 };
