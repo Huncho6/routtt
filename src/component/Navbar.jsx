@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
 import { TiShoppingCart } from "react-icons/ti";
 import { MartContext } from "../context/MartContext";
+import { AuthContext } from "../context/AuthContext";
 //NavLink allows styling
 //but Link doesn't allow styling
 
@@ -88,6 +89,7 @@ const ToggleButton = styled.div`
 const Navbar = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const { cart } = useContext(MartContext);
+  const { logOut } = useContext(AuthContext);
 
   return (
     <Wrapper theme={theme}>
@@ -144,6 +146,9 @@ const Navbar = () => {
       <div className="cartContainer">
       <p>{cart?.length || 0}</p>
         <TiShoppingCart />
+      </div>
+      <div>
+        <button onClick={logOut}>logout</button>
       </div>
     </Wrapper>
   );
