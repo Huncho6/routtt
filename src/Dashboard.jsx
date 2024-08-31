@@ -12,6 +12,8 @@ import BlogPreview from "./pages/blogs/BlogPreview";
 import Mart from "./pages/mart/Mart";
 import { AuthContext } from "./context/AuthContext";
 import { useContext } from "react";
+import BlogCard from "./pages/blogs/BlogCard";
+
 
 const Dashboard = () => {
   const { userData } = useContext(AuthContext);
@@ -38,9 +40,10 @@ const Dashboard = () => {
         <Route path="/student" element={<Students />} />
         <Route path="/student/:slug" element={<StudentPreview />} />
 
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/blog/:slug" element={<BlogPreview />} />
-
+         <Route path="/blog" element={<Blog />}>
+          <Route path="blogcard" element={<BlogCard />} />
+        </Route>
+         <Route path="/blog/:slug" element={<BlogPreview />} />
         <Route path="/mart" element={<Mart />} />
       </Routes>
     </>

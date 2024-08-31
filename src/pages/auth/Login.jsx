@@ -39,7 +39,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "https://student-app-3baw.onrender.com/api/v1/auth/login/student",
+        "https://school-app-os8e.onrender.com/api/v1/auth/login/student",
         {
           email: email,
           password: password,
@@ -68,6 +68,7 @@ const Login = () => {
       </div>
       <div>
         <button onClick={() => navigate("/auth/register")}>Sign up</button>
+        <button onClick={() => navigate("/auth/forgotpassword")}>Forgot</button>
       </div>
       <div>
         <form onSubmit={handleSubmit}>

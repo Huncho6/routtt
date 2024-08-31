@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { blogPosts } from "../../utils/blogPost";
 import styled from "styled-components";
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 
 const Container = styled.div`
@@ -35,7 +35,30 @@ const Description = styled.p`
 const BlogPreview = () => {
   const { slug } = useParams();
   const post = blogPosts.find((p) => p.slug === slug);
+
+  const nextPost = useMemo(() => {
+    const currentIndex = blogPosts.findIndex((p) => p.slug === slug);
+    return blogPosts[currentIndex + 1];
+  }, [slug]);
+
+  const prevPost = useMemo(() => {
+    const currentIndex = blogPosts.findIndex((p) => p.slug === slug);
+    return blogPosts[currentIndex - 1];
+  }, [slug]);
+
   const navigate = useNavigate();
+  const goToNextPost = () => {
+    if (nextPost) {
+      navigate(`/blog/${nextPost.slug}`);
+    }
+  };
+
+  const goToPrevPost = () => {
+    if (prevPost) {
+      navigate(`/blog/${nextPost.slug}`);
+    }
+  };
+
   const { theme } = useContext(ThemeContext);
 
   if (!post) return <div>Post not found</div>;
@@ -47,8 +70,10 @@ const BlogPreview = () => {
         <Title>{post.title}</Title>
         <Description>{post.content}</Description>
         <button onClick={() => navigate(-1)}>Close</button>
+        <button onClick={goToNextPost}>Next</button>
+        <button onClick={goToPrevPost}>previous</button>
       </Content>
-    </Container>
+    </Container>  
   );
 };
 
